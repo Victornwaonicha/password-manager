@@ -3,6 +3,8 @@ from tkinter import messagebox
 import pyperclip
 from tkinter import *
 
+RED = "#FF0000"
+
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -55,39 +57,39 @@ def save():
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
-window.config(padx=20, pady=20)
-window.minsize(width=550, height=400)
+window.config(padx=50, pady=50)
+# window.minsize(width=550, height=400)
 
 canvas = Canvas(width=200, height=200)
 pass_img = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=pass_img)
 canvas.grid(row=0, column=1)
 
-web_label = Label(text="Website")
+web_label = Label(text="Website:")
 web_label.grid(row=1, column=0)
 
-web_input = Entry(width=20)
-web_input.grid(row=1, column=1)
+web_input = Entry(width=35)
+web_input.grid(row=1, column=1, columnspan=2)
 
-email_label = Label(text="Email/Username")
+email_label = Label(text="Email/Username:")
 email_label.grid(row=2, column=0)
 
-email_input = Entry(width=20)
-email_input.grid(row=2, column=1)
+email_input = Entry(width=35)
+email_input.grid(row=2, column=1, columnspan=2)
 web_input.focus()
 
-pass_label = Label(text="Password")
+pass_label = Label(text="Password:")
 pass_label.grid(row=3, column=0)
 
-pass_input = Entry(width=20, )
-pass_input.grid(row=3, column=1)
+pass_input = Entry(width=35)
+pass_input.grid(row=3, column=1, columnspan=2)
 
 
-gen_pass = Button(text="Generate Password", command=generate_password)
+gen_pass = Button(text="Generate Password", command=generate_password, width=12, font=("Arial", 12), fg=RED)
 gen_pass.grid(row=3, column=2)
 
-add_button = Button(text="Add", width=17, command=save)
-add_button.grid(row=4, column=1)
+add_button = Button(text="Add", width=33, command=save, fg=RED)
+add_button.grid(row=4, column=1, columnspan=2)
 
 
 
