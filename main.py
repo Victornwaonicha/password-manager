@@ -6,7 +6,6 @@ from tkinter import *
 RED = "#FF0000"
 
 
-
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     lower_list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
@@ -45,12 +44,20 @@ def save():
 
     if website == "" or password == "":
         messagebox.showwarning(title="Oops", message="Please don't leave fields empty!")
+
     else:
-        with open('saved_data.txt', 'a') as file:
-            file.write(f"Website: {website} | Email: {email} | Password: {password}\n")
-        web_input.delete(0, END)
-        email_input.delete(0, END)
-        pass_input.delete(0, END)
+        is_ok = messagebox.askokcancel(title=website, message=f"These are the info entered: \nEmail: {email} "
+                                                              f"\nPassword: {password} \nIs is okay to save now?")
+
+        if is_ok:
+            with open('saved_data.txt', 'a') as file:
+                file.write(f"Website: {website} | Email: {email} | Password: {password}\n")
+            web_input.delete(0, END)
+            email_input.delete(0, END)
+            pass_input.delete(0, END)
+            messagebox.showwarning(title="Success", message="Thank you!!")
+
+
 
 
 
@@ -70,13 +77,13 @@ web_label.grid(row=1, column=0)
 
 web_input = Entry(width=35)
 web_input.grid(row=1, column=1, columnspan=2)
+web_input.focus()
 
 email_label = Label(text="Email/Username:")
 email_label.grid(row=2, column=0)
 
 email_input = Entry(width=35)
 email_input.grid(row=2, column=1, columnspan=2)
-web_input.focus()
 
 pass_label = Label(text="Password:")
 pass_label.grid(row=3, column=0)
@@ -92,5 +99,7 @@ add_button = Button(text="Add", width=33, command=save, fg=RED)
 add_button.grid(row=4, column=1, columnspan=2)
 
 
-
 window.mainloop()
+
+
+
